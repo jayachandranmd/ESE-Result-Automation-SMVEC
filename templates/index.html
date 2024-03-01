@@ -81,7 +81,11 @@
         <h1>Generate Exam Results</h1>
         <form action="/" method="post" enctype="multipart/form-data" class="file-upload">
             <input type="file" name="file" accept=".xlsx" required>
-            <br><br>
+            <br>
+            <p style="font-size: 12px; color: #666;"><br>
+                *Note: 1st column must contain Register number and 2nd Column must contain DOB in the format
+                DD/MM/YYYY as String and the values should start from row 2.</p>
+            <br>
             <input type="text" name="result_url" placeholder="Enter Exam Result URL" required>
             <br><br>
             <button type="submit" class="upload-button click-animation">Upload and Process</button>

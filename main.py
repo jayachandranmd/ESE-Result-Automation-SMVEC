@@ -24,7 +24,7 @@ result_wb = Workbook()
 result_ws = result_wb.active
 
 flag = 0
-for row in ws.iter_rows(min_row=11, values_only=True):
+for row in ws.iter_rows(min_row=2, values_only=True):
     if len(row) >= 2:
         regno, dob = row[:2]
         while True:

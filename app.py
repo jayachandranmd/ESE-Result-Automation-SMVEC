@@ -36,7 +36,7 @@ def process_results(result_url, file_path):
     result_wb = Workbook()
     result_ws = result_wb.active
 
-    for row in ws.iter_rows(min_row=63, values_only=True):
+    for row in ws.iter_rows(min_row=2, values_only=True):
         if len(row) >= 2:
             regno, dob = row[:2]
             while True:
@@ -165,5 +165,3 @@ def upload_file():
 
     return render_template('index.html')
 
-if __name__ == '__main__':
-    app.run(debug=True)
