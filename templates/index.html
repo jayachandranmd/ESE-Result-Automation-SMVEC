@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Exam Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 400px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .file-upload {
+            margin-bottom: 20px;
+        }
+
+        .upload-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .upload-button:hover {
+            background-color: #45a049;
+        }
+
+        .result-link {
+            background-color: #1e90ff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            margin-right: 10px;
+        }
+
+        .result-link:hover {
+            background-color: #007bff;
+        }
+
+        /* Click animation */
+        .click-animation {
+            transition: transform 0.2s;
+        }
+
+        .click-animation:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Generate Exam Results</h1>
+        <form action="/" method="post" enctype="multipart/form-data" class="file-upload">
+            <input type="file" name="file" accept=".xlsx" required>
+            <br><br>
+            <input type="text" name="result_url" placeholder="Enter Exam Result URL" required>
+            <br><br>
+            <button type="submit" class="upload-button click-animation">Upload and Process</button>
+        </form>
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+        {% if result %}
+        <a href="{{ result }}" class="result-link">Download Result</a>
+        <a href="{{ screenshots }}" class="result-link">Download Screenshots</a>
+        {% endif %}
+    </div>
+
+</body>
+
+</html>
