@@ -92,12 +92,8 @@ def process_results(result_url, file_path):
                             subject_list.append(sub_i_element.text)
                             title_list.append(title_i_element.text)
 
-                        # Ensuring that screen dimensions and Column Attributes are set only once 
+                        # Ensuring that Column Attributes are set only once 
                         if 'flag' not in locals():
-                            # Setting screen dimensions
-                            width = driver.execute_script("return document.body.scrollWidth")
-                            height = driver.execute_script("return document.body.scrollHeight")
-                            driver.set_window_size(width, height) 
 
                             # Setting Column Attributes 
                             first_row = ["Register Number","Name"]
@@ -119,9 +115,6 @@ def process_results(result_url, file_path):
                         # Appending values to result.xlsx
                         result_ws.append(row)
 
-                        # Save screenshot of result with register number as file name
-                       # driver.save_screenshot(f"screenshots/{regno}_result.png")
-
                     except Exception as e:
                         print("Error:", e)
                         continue
@@ -134,11 +127,6 @@ def process_results(result_url, file_path):
     result_wb.save(os.path.join(app.config['RESULT_FOLDER'], 'result.xlsx'))
     driver.quit()
 
-    # Zip screenshots
-    # with zipfile.ZipFile(os.path.join(app.config['RESULT_FOLDER'], 'screenshots.zip'), 'w') as zipf:
-    #     for root, dirs, files in os.walk('screenshots'):
-    #         for file in files:
-    #             zipf.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), 'screenshots'))
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
@@ -164,4 +152,7 @@ def upload_file():
             return send_file(os.path.join(app.config['RESULT_FOLDER'], 'result.xlsx'), as_attachment=True)
 
     return render_template('index.html')
+
+if __name__ == '__main__':
+    app.run(debug=False)
 
