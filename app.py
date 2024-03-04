@@ -120,7 +120,7 @@ def process_results(result_url, file_path):
                         result_ws.append(row)
 
                         # Save screenshot of result with register number as file name
-                        driver.save_screenshot(f"screenshots/{regno}_result.png")
+                       # driver.save_screenshot(f"screenshots/{regno}_result.png")
 
                     except Exception as e:
                         print("Error:", e)
@@ -135,10 +135,10 @@ def process_results(result_url, file_path):
     driver.quit()
 
     # Zip screenshots
-    with zipfile.ZipFile(os.path.join(app.config['RESULT_FOLDER'], 'screenshots.zip'), 'w') as zipf:
-        for root, dirs, files in os.walk('screenshots'):
-            for file in files:
-                zipf.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), 'screenshots'))
+    # with zipfile.ZipFile(os.path.join(app.config['RESULT_FOLDER'], 'screenshots.zip'), 'w') as zipf:
+    #     for root, dirs, files in os.walk('screenshots'):
+    #         for file in files:
+    #             zipf.write(os.path.join(root, file), os.path.relpath(os.path.join(root, file), 'screenshots'))
 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file():
